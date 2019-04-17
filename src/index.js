@@ -25,8 +25,8 @@ function update() { // Update config.json
 	});
 }
 
-function thething(connection) {
-	
+function team_attack(connection) { // Coordinated bot attack when voice chat is joined
+	// Do stuff here, e.g. play random noises
 }
 
 function init() { // Identify ally bots to each other
@@ -34,17 +34,20 @@ function init() { // Identify ally bots to each other
 	bots.forEach((bot) => {
 		bot.ally(allies);
 		bot.on("targetAcquired", (channel) => {
-			bot.attack(channel).then(thething).catch(console.log);
+			bot.attack(channel).then(team_attack).catch(console.log);
 		});
+		bot.guildCheck(bot);
 	});
 	console.log("Allies identified; program initiated".green);
 }
 
-function target(t) {
+function target(t) { // Identify a new target
 	config.target = t;
+	bots.forEach(bot => bot.newTarget(t));
 	update().then(() => {
 		console.log("Changed target".green);
 	}).catch(console.log);
+	
 }
 
 function exit() { // Wrap everything up

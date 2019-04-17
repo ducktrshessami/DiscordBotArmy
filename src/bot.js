@@ -12,6 +12,7 @@ module.exports = class bot extends EventEmitter {
 		
 		this.client.on("ready", () => {
 			console.log("Logged in: ".green + this.client.user.username + '#' + this.client.user.discriminator);
+			//this.client.user.setStatus("invisible").catch(console.log);
 		});
 		
 		this.client.login(token).catch(console.log);
