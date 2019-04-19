@@ -32,7 +32,7 @@ module.exports = class bot extends EventEmitter {
 	}
 	
 	guildCheck(b) { // Check all guilds for target and correct conditions
-		if (b.target) {
+		if (b.target && b.allies) {
 			var found = false;
 			b.client.guilds.tap((guild) => {
 				if (guild.members.has(b.target)) {

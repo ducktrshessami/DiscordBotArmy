@@ -14,7 +14,7 @@ const ios = readline.createInterface({ // Open console for commands
 
 function update() { // Update config.json
 	return new Promise((resolve, reject) => {
-		fs.writeFile("../config.json", JSON.stringify(config, null, 4), (error) => {
+		fs.writeFile("../config.json", JSON.stringify(config, null, 4) + "\n", (error) => {
 			if (error) {
 				reject(error);
 			}
