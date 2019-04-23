@@ -1,6 +1,6 @@
 {
   "name": "DiscordBotArmy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Swarms a user in a voice channel",
   "main": "src/index.js",
   "author": "ducktrshessami",

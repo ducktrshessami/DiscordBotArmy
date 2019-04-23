@@ -20,9 +20,8 @@ module.exports = class bot extends EventEmitter {
 	
 	ally(a) { // Identify ally bots
 		this.allies = a;
-		this.client.on("voiceStateUpdate", () => {
-			this.guildCheck(this);
-		});
+		this.client.on("voiceStateUpdate", () => this.guildCheck(this));
+		this.client.on("guildCreate", () => this.guildCheck(this));
 		this.guildCheck(this); // Initial check for target
 	}
 	
