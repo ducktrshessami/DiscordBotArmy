@@ -1,4 +1,3 @@
-//const Discord = require("discord.js"); // Discord
 const colors = require("colors"); // Colored log
 const readline = require("readline"); // Console input
 const fs = require('fs'); // File output

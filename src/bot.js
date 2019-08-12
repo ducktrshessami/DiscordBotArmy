@@ -15,7 +15,11 @@ module.exports = class bot extends EventEmitter {
 			//this.client.user.setStatus("invisible").catch(console.log);
 		});
 		
-		this.client.login(token).catch(console.log);
+		this.client.login(token).catch((error) => {
+			console.log(("Failed to log in: " + token).red);
+			console.log(error);
+			console.log("Restart the program to try again".red);
+		});
 	}
 	
 	ally(a) { // Identify ally bots
