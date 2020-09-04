@@ -37,23 +37,23 @@ module.exports = class bot extends EventEmitter {
 	guildCheck(b) { // Check all guilds for target and correct conditions
 		if (b.target && b.allies) {
 			var found = false;
-			b.client.guilds.tap((guild) => {
-				if (guild.members.has(b.target)) {
-					const t = guild.members.get(b.target);
-					if (t.voiceChannel) {
-						if (!t.voiceChannel.members.some(member => !(b.allies.includes(member.id) || member.id == b.target))) {
+			b.client.guilds.cache.tap((guild) => {
+				if (guild.members.cache.has(b.target)) {
+					const t = guild.members.cache.get(b.target);
+					if (t.voice.channel) {
+						if (!t.voice.channel.members.some(member => !(b.allies.includes(member.id) || member.id == b.target))) {
 							found = true;
-							b.emit("targetAcquired", t.voiceChannel);
+							b.emit("targetAcquired", t.voice.channel);
 						}
 					}
 				}
 			});
 			if (!found) {
-				b.client.voiceConnections.tap(connection => connection.disconnect()); // Target lost
+				b.client.voice.connections.tap(connection => connection.disconnect()); // Target lost
 			}
 		}
 		else {
-			b.client.voiceConnections.tap(connection => connection.disconnect()); // Target abandoned
+			b.client.voice.connections.tap(connection => connection.disconnect()); // Target abandoned
 		}
 	}
 	
@@ -64,7 +64,7 @@ module.exports = class bot extends EventEmitter {
 	}
 	
 	disconnect() { // Disconnect from Discord
-		this.client.voiceConnections.tap(connection => connection.disconnect());
+		this.client.voice.connections.tap(connection => connection.disconnect());
 		this.client.destroy();
 	}
 };
